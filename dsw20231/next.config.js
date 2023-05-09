@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {async headers() {
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  }, async headers() {
     return [
       {
         // matching all API routes
@@ -15,4 +18,5 @@ const nextConfig = {async headers() {
     ]
   }}
 
+  
 module.exports = nextConfig
