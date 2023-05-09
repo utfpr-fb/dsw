@@ -30,3 +30,6 @@ export async function POST(
   const {rows} = await client.sql`INSERT INTO Student (name, email) VALUES (${body.name}, ${body.email})`
   return NextResponse.json({ success: "ok" });
 }
+
+
+
