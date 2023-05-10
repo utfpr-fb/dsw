@@ -1,7 +1,8 @@
 import { getAllStudent } from "@/app/model/StudentService"
 import Link from "next/link";
 
-import { escape } from "querystring";
+
+export const dynamic = 'force-dynamic'
 async function getAll(){
     const students = await getAllStudent();
    // const es = [{name:"adair", email:"emailada"}]
