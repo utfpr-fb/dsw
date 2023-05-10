@@ -1,6 +1,7 @@
 import { getStudentById, deleteStudentById } from "@/app/model/StudentService";
 import { NextRequest } from "next/server";
 import { redirect } from 'next/navigation';
+import { revalidatePath } from "next/cache";
 
 export default async function Page(params:any){
     const id= params.searchParams.id;
@@ -13,6 +14,7 @@ export default async function Page(params:any){
         const id = formData.get("id");
         console.log(id)
          await deleteStudentById(id);
+         revalidatePath('/student/list');
         redirect('/student/list');
     }
     return(
