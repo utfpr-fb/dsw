@@ -1,24 +1,23 @@
-import { addStudent } from "../model/StudentService";
-import { redirect } from 'next/navigation';
-export default function student(){
-    const handlerSubmit = async (formData: FormData)=>{
-        'use server';
-        console.log("Server")
-        const name = formData.get("name");
-        const email = formData.get("email");
-        addStudent(name, email)
-        redirect('/student');
-    };
-    return(
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <form action={handlerSubmit}>
-            <input type="text" name="name" /> <br></br>
-            <input type="text" name="email" />
-            <button type="submit">Salvar</button>
-           
-    
-        </form>
-        </main>
-    )
+import { revalidatePath } from "next/cache";
+import { deleteStudentById, getAllStudent } from "../model/StudentService";
+import { StudentItem } from "./StudentItem";
+import { Student } from "../types";
+
+export default async function Home(){
+    const students = await getAllStudent();
+
+    async function deleleStudent(id: string | number){
+       "use server"
+       await deleteStudentById(id)
+       revalidatePath("/");
+
+    }
+    return (
+        <ul className='mt-4 flex flex-col gap-1'>
         
+        {students?.map(student => (
+              <StudentItem key={student.id} student={student} deleteStudent={deleleStudent} />
+          ))}      
+      </ul>
+    )
 }

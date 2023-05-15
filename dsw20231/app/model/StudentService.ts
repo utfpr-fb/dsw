@@ -1,6 +1,7 @@
 
 import { db } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
+import { Student } from '../types';
 
 export async function getStudentById(id: any) {
   const client = await db.connect();
@@ -13,7 +14,7 @@ export async function getAllStudent(){
   //console.log(rows)
   //return JSON.stringify(rows)
   
-  return students;
+  return students as Array<Student>;
 }
 
 export async function addStudent(name: any, email: any) {

@@ -14,7 +14,8 @@ export default async function Page(params:any){
         const id = formData.get("id");
         console.log(id)
          await deleteStudentById(id);
-         revalidatePath('/student/list');
+         //Verificar que não é necessário, just export const dynamic = 'force-dynamic'
+        // revalidatePath('/student/list');
         redirect('/student/list');
     }
     return(
