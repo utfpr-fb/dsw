@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export default async function Home(){
     const students = await getAllStudent();
 
-    async function deleleStudent(id: number){
+    async function deleleStudent(id: string){
        "use server"
        await deleteStudentById(id)
     //  revalidatePath("/");

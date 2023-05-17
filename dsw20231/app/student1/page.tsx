@@ -4,8 +4,8 @@ export default function student(){
     const handlerSubmit = async (formData: FormData)=>{
         'use server';
         console.log("Server")
-        const name = formData.get("name");
-        const email = formData.get("email");
+        const name = formData.get("name") as string;
+        const email = formData.get("email")as string;
         addStudent(name, email)
         redirect('/student');
     };

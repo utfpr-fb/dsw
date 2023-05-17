@@ -7,10 +7,10 @@ export function StudentItem ({
     deleteStudent
   }: {
     student: Student;
-    deleteStudent: (id: number) => Promise<void>;
+    deleteStudent: (id: string) => Promise<void>;
   }) {
    
-    function Vai(id:number){
+    function Vai(id:string){
       if (confirm("Confirma a exclusão"))
       deleteStudent(id);
     }
