@@ -1,23 +1,24 @@
-import { revalidatePath } from "next/cache";
-import { deleteStudentById, getAllStudent } from "../model/StudentService";
-import { StudentItem } from "./StudentItem";
+import { redirect } from "next/navigation";
+import { addStudent, getAllStudent } from "../model/StudentService";
 import { Student } from "../types";
+import { revalidatePath } from "next/cache";
+import { NewStudentForm } from "./create";
 
-export default async function Home(){
+
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
     const students = await getAllStudent();
 
-    async function deleleStudent(id: string | number){
-       "use server"
-       await deleteStudentById(id)
-       revalidatePath("/");
-
-    }
     return (
-        <ul className='mt-4 flex flex-col gap-1'>
-        
-        {students?.map(student => (
-              <StudentItem key={student.id} student={student} deleteStudent={deleleStudent} />
-          ))}      
-      </ul>
+        <main className="mt-5">
+            <NewStudentForm />
+            <br></br>
+            <ul className='mt-1'>
+                {students?.map(student => (
+                    <li key={student.id}><a href={`/student/edit?id=${student.id}`}>{student.name}</a></li>
+                ))}
+            </ul>
+        </main>
     )
 }

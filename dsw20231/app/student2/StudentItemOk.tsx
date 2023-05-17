@@ -10,17 +10,22 @@ export function StudentItem ({
     deleteStudent: (id: string | number) => Promise<void>;
   }) {
     const [isPending, startTransition] = useTransition();
+    function Vai(id:number|string){
+      if (confirm("Confirma a exclusão"))
+      //alert(oi)
+      deleteStudent(id);
+    }
     return (      
         
             <li key={student.id}><span>{student.name}</span>   <input
             type="button"
-            value="Delete"
+            value="Deletar"
             onClick={() => {
               startTransition(() => {
                 deleteStudent(student.id);
               });
             }}
-          /></li>
+          /><input type="button" value="Diga" onClick={() => Vai(student.id)} />  </li>
           
      
     )

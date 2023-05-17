@@ -14,8 +14,7 @@ export default function student(){
         <form action={handlerSubmit}>
             <input type="text" name="name" /> <br></br>
             <input type="text" name="email" />
-            <button type="submit">Salvar</button>
-           
+            <button type="submit">Salvar</button>     
     
         </form>
         </main>

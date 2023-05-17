@@ -17,7 +17,7 @@ export default async function Page(){
         <ul className='mt-4 flex flex-col gap-1'>
         
         {students?.map(student => (
-            <li key={student.id}><a href={`/student/edit?id=${student.id}`}>{student.name}</a></li>
+            <li key={student.id}><a href={`/student1/edit?id=${student.id}`}>{student.name}</a></li>
           ))}      
       </ul>
     )

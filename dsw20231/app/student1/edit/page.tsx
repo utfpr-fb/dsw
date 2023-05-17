@@ -11,7 +11,7 @@ export default async function Page(params:any){
     const handlerSubmit = async (formData: FormData)=>{
         'use server';
         console.log("Server")
-        const id = formData.get("id");
+        const id = formData.get("id") as string
         console.log(id)
          await deleteStudentById(id);
          //Verificar que não é necessário, just export const dynamic = 'force-dynamic'
